@@ -1,7 +1,11 @@
 .login {
   height: 100vh;
   background-image: linear-gradient(#0000007e, #0000007e),
-    url(/src/assets/background_banner.jpg);
+    url(/src/assets/netflix_backgroud.jpg);
+
+    background-repeat: no-repeat;
+background-size: cover; 
+background-position: center; 
   padding: 20px 8%;
   display: flex;
   flex-direction: column;
