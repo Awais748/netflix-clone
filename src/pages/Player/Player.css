@@ -1,0 +1,49 @@
+.player {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.player img {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  width: 50px;
+  cursor: pointer;
+}
+
+.player iframe {
+  border-radius: 10px;
+}
+.player-info {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+
+@media (max-width: 768px) {
+  .player iframe {
+    height: 45vh;
+  }
+
+  .player-info {
+    flex-direction: column;
+    text-align: center;
+    gap: 10px;
+  }
+}
+
+@media (max-width: 480px) {
+  .player iframe {
+    height: 35vh;
+  }
+
+  .player img {
+    width: 40px;
+    top: 15px;
+    left: 15px;
+  }
+}
