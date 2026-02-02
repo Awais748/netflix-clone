@@ -43,8 +43,8 @@ A high-performance, visually stunning Netflix clone built with **React 19** and 
 
 | Home Screen |
 | :---: |
-| (<img width="953" height="449" alt="netlfix" src="https://github.com/user-attachments/assets/a917a3d8-7365-4fa8-b326-0408255b0007" />
-) |
+| <img width="953" height="449" alt="netlfix" src="https://github.com/user-attachments/assets/a917a3d8-7365-4fa8-b326-0408255b0007" />
+ |
 
 ---
 
@@ -99,7 +99,7 @@ Contributions are what make the open-source community such an amazing place to l
 ## 📬 Contact & Links
 
 - **GitHub**: [@Awais748](https://github.com/Awais748)
-- **LinkedIn**: [Your LinkedIn Profile](https://www.linkedin.com/in/awais-tariq-9a2a45374)
+- **LinkedIn**: [Awais ](https://www.linkedin.com/in/awais-tariq-9a2a45374)
 
 
 ---
