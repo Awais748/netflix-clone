@@ -1,4 +1,6 @@
-<img width="953" height="449" alt="image" src="https://github.com/user-attachments/assets/e64568a8-d5e4-460a-8834-4e0492abd389" /># 🎬 Netflix Clone
+<img width="953" height="449" alt="image" src="https://github.com/user-attachments/assets/e64568a8-d5e4-460a-8834-4e0492abd389" />
+
+# 🎬 Netflix Clone
 
 [![React](https://img.shields.io/badge/React-19.0-61DAFB?style=for-the-badge&logo=react)](https://react.dev/)
 [![Vite](https://img.shields.io/badge/Vite-7.0-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
