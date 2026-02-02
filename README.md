@@ -42,9 +42,9 @@ A high-performance, visually stunning Netflix clone built with **React 19** and 
 ## 📸 Visuals
 
 | Home Screen |
-| :---: | :---: |
-| ![Home Placeholder](<img width="953" height="449" alt="netlfix" src="https://github.com/user-attachments/assets/a917a3d8-7365-4fa8-b326-0408255b0007" />
-) 
+| :---: |
+| ![Home Screen](<img width="953" height="449" alt="netlfix" src="https://github.com/user-attachments/assets/a917a3d8-7365-4fa8-b326-0408255b0007" />
+) |
 
 ---
 
