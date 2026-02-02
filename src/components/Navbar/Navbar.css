@@ -3,16 +3,27 @@
   padding: 20px 6%;
   display: flex;
   justify-content: space-between;
+  align-items: center;
   position: fixed;
   font-size: 14px;
-  color: #e5e5e5;
-  background-image: linear-gradient(
+  color: var(--text-primary);
+  background: linear-gradient(
     180deg,
-    rgba(0, 0, 0, 0.7) 10%,
-    transparent
+    rgba(0, 0, 0, 0.5) 0%,
+    transparent 100%
   );
-  z-index: 1;
+  z-index: var(--z-navbar);
+  transition: all var(--transition-normal);
 }
+
+[data-theme="light"] .navbar {
+  background: linear-gradient(
+    180deg,
+    rgba(255, 255, 255, 0.5) 0%,
+    transparent 100%
+  );
+}
+
 .navbar-left {
   display: flex;
   align-items: center;
@@ -21,28 +32,95 @@
 
 .navbar-left img {
   width: 90px;
+  transition: transform var(--transition-fast);
 }
+
+.navbar-left img:hover {
+  transform: scale(1.05);
+}
+
 .navbar-left ul {
   display: flex;
   list-style: none;
   gap: 20px;
 }
+
 .navbar-left ul li {
   cursor: pointer;
+  transition: color var(--transition-fast);
+  font-weight: 500;
+  color: var(--text-primary);
 }
+
+.navbar-left ul li:hover {
+  color: var(--netflix-red);
+}
+
 .navbar-right {
   display: flex;
   gap: 20px;
   align-items: center;
 }
+
+.navbar-right p {
+  cursor: pointer;
+  transition: color var(--transition-fast);
+  color: var(--text-primary);
+}
+
+.navbar-right p:hover {
+  color: var(--netflix-red);
+}
+
 .navbar-right .icons {
   width: 20px;
   cursor: pointer;
+  transition: all var(--transition-fast);
 }
+
+[data-theme="light"] .icons,
+[data-theme="light"] .navbar-profile > img:last-child {
+  filter: invert(1);
+}
+
+.navbar-right .icons:hover {
+  transform: scale(1.1);
+  filter: brightness(1.2);
+}
+
+[data-theme="light"] .navbar-right .icons:hover {
+  filter: invert(1) brightness(0.8);
+}
+
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: var(--text-primary);
+  font-size: 20px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 5px;
+  transition: all var(--transition-fast);
+}
+
+.theme-toggle-btn:hover {
+  transform: scale(1.15);
+  color: var(--netflix-red);
+}
+
 .navbar-right .profile {
   border-radius: 4px;
   width: 35px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
 }
+
+.navbar-right .profile:hover {
+  transform: scale(1.05);
+}
+
 .navbar-profile {
   display: flex;
   align-items: center;
@@ -50,28 +128,57 @@
   cursor: pointer;
   position: relative;
 }
+
 .navbar .dropdown {
   position: absolute;
   top: 100%;
   right: 0;
   width: max-content;
-  background: #191919;
+  background: var(--glass-bg);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   padding: 18px 22px;
-  border-radius: 2px;
+  border-radius: 6px;
+  border: 1px solid var(--glass-border);
   text-decoration: underline;
-  z-index: 13px;
-  display: none;
+  z-index: var(--z-dropdown);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-10px);
+  transition: all var(--transition-normal);
+  box-shadow: var(--shadow-md);
+  margin-top: 10px;
 }
+
+.navbar .dropdown.show {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
 .navbar .dropdown p {
   font-size: 13px;
   cursor: pointer;
+  transition: color var(--transition-fast);
+  color: var(--text-primary);
+  text-decoration: none;
 }
+
+.navbar .dropdown p:hover {
+  color: var(--netflix-red);
+}
+
 .navbar-profile:hover .dropdown {
-  display: block;
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
 }
 
 .nav-dark {
-  background: #141414;
+  background: var(--glass-bg);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+  box-shadow: var(--shadow-sm);
 }
 
 /* ----------- RESPONSIVE NAVBAR ----------- */
@@ -88,6 +195,7 @@
 
   .navbar-left ul {
     gap: 14px;
+    font-size: 13px;
   }
 }
 
@@ -95,11 +203,19 @@
   .navbar-left ul {
     display: none;
   }
+  
+  .navbar {
+    padding: 12px 4%;
+  }
 }
 
 @media (max-width: 480px) {
   .navbar {
     padding: 12px 4%;
+  }
+
+  .navbar-left {
+    gap: 15px;
   }
 
   .navbar-left img {
@@ -116,5 +232,9 @@
 
   .navbar-right .profile {
     width: 30px;
+  }
+
+  .navbar-right p {
+    display: none;
   }
 }

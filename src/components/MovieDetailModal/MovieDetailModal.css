@@ -1,0 +1,356 @@
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: var(--bg-modal);
+  backdrop-filter: blur(8px);
+  z-index: var(--z-modal);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  overflow-y: auto;
+}
+
+.modal-content {
+  position: relative;
+  background: var(--bg-primary);
+  border-radius: 12px;
+  max-width: 900px;
+  width: 100%;
+  max-height: 90vh;
+  overflow-y: auto;
+  box-shadow: var(--shadow-lg);
+}
+
+.modal-close {
+  position: absolute;
+  top: 20px;
+  right: 20px;
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  border-radius: 50%;
+  width: 40px;
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 18px;
+  cursor: pointer;
+  z-index: 10;
+  transition: all var(--transition-fast);
+}
+
+.modal-close:hover {
+  background: rgba(255, 255, 255, 0.2);
+  transform: scale(1.1);
+}
+
+/* Hero Section */
+.modal-hero {
+  position: relative;
+  width: 100%;
+  height: 450px;
+  overflow: hidden;
+}
+
+.modal-backdrop {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.modal-hero-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 60%;
+  background: linear-gradient(to top, var(--bg-primary) 0%, transparent 100%);
+}
+
+.modal-hero-content {
+  position: absolute;
+  bottom: 30px;
+  left: 40px;
+  right: 40px;
+  z-index: 2;
+}
+
+.modal-title {
+  font-size: 3rem;
+  font-weight: 700;
+  margin-bottom: 20px;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+}
+
+.modal-actions {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.btn-play {
+  background: white;
+  color: black;
+  border: none;
+  padding: 12px 30px;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  transition: all var(--transition-fast);
+}
+
+.btn-play:hover {
+  background: rgba(255, 255, 255, 0.8);
+  transform: scale(1.05);
+}
+
+.btn-watchlist {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 18px;
+  transition: all var(--transition-fast);
+}
+
+.btn-watchlist:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: white;
+  transform: scale(1.1);
+}
+
+/* Details Section */
+.modal-details {
+  padding: 40px;
+}
+
+.modal-info {
+  margin-bottom: 40px;
+}
+
+.modal-meta {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.modal-rating {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.modal-year,
+.modal-runtime {
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.modal-overview {
+  font-size: 16px;
+  line-height: 1.6;
+  color: var(--text-secondary);
+  margin-bottom: 25px;
+}
+
+.modal-genres,
+.modal-cast,
+.modal-crew {
+  margin-bottom: 15px;
+  font-size: 14px;
+}
+
+.label {
+  color: var(--text-dark);
+  margin-right: 10px;
+  font-weight: 500;
+}
+
+.value {
+  color: var(--text-primary);
+}
+
+/* Similar Movies */
+.modal-similar {
+  margin-top: 40px;
+}
+
+.modal-similar h3 {
+  font-size: 24px;
+  margin-bottom: 20px;
+}
+
+.similar-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+  gap: 15px;
+}
+
+.similar-card {
+  cursor: pointer;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--bg-card);
+  transition: all var(--transition-normal);
+}
+
+.similar-card:hover {
+  transform: scale(1.05);
+  box-shadow: var(--shadow-md);
+}
+
+.similar-card img {
+  width: 100%;
+  aspect-ratio: 2/3;
+  object-fit: cover;
+}
+
+.similar-info {
+  padding: 10px;
+}
+
+.similar-info h4 {
+  font-size: 14px;
+  margin-bottom: 5px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.similar-rating {
+  font-size: 12px;
+  color: var(--text-secondary);
+}
+
+/* Loading State */
+.modal-loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 400px;
+}
+
+.spinner {
+  width: 50px;
+  height: 50px;
+  border: 4px solid var(--bg-hover);
+  border-top-color: var(--netflix-red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.modal-error {
+  padding: 60px;
+  text-align: center;
+  color: var(--text-secondary);
+}
+
+.modal-error .btn-retry {
+  margin-top: 20px;
+  padding: 10px 24px;
+  background: var(--netflix-red);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background var(--transition-fast);
+}
+
+.modal-error .btn-retry:hover {
+  background: var(--netflix-red-dark);
+}
+
+/* Placeholder for missing images */
+.modal-backdrop-placeholder {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, var(--bg-card) 0%, var(--bg-hover) 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  font-size: 18px;
+}
+
+.similar-placeholder {
+  width: 100%;
+  aspect-ratio: 2/3;
+  background: var(--bg-hover);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--text-dark);
+  font-size: 12px;
+}
+
+.modal-loading p {
+  margin-top: 15px;
+  color: var(--text-secondary);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .modal-content {
+    max-height: 95vh;
+    border-radius: 0;
+  }
+
+  .modal-hero {
+    height: 300px;
+  }
+
+  .modal-title {
+    font-size: 2rem;
+  }
+
+  .modal-hero-content {
+    left: 20px;
+    right: 20px;
+    bottom: 20px;
+  }
+
+  .modal-details {
+    padding: 20px;
+  }
+
+  .similar-grid {
+    grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+    gap: 10px;
+  }
+
+  .modal-actions {
+    flex-wrap: wrap;
+  }
+
+  .btn-play {
+    padding: 10px 24px;
+    font-size: 14px;
+  }
+
+  .btn-watchlist {
+    width: 40px;
+    height: 40px;
+    font-size: 16px;
+  }
+}

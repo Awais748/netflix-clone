@@ -2,41 +2,219 @@
   margin-top: 50px;
   margin-bottom: 30px;
 }
+
 .title-cards h2 {
-  margin-bottom: 8px;
+  margin-bottom: 15px;
+  font-size: 24px;
+  font-weight: 600;
 }
+
+.card-list-wrapper {
+  position: relative;
+}
+
 .card-list {
   display: flex;
   gap: 10px;
   overflow-x: scroll;
+  scroll-behavior: smooth;
+  padding: 10px 0;
 }
+
 .card-list::-webkit-scrollbar {
   display: none;
 }
-.card-list img {
-  width: 240px;
-  border-radius: 4px;
-  cursor: pointer;
-}
+
 .card-list .card {
   position: relative;
-}
-.card-list .card p {
-  position: absolute;
-  bottom: 10px;
-  right: 10px;
-  text-decoration: none;
-  color: #fff;
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: all var(--transition-normal);
+  border-radius: 6px;
+  overflow: hidden;
 }
 
+.card-list .card img {
+  width: 240px;
+  height: 135px;
+  object-fit: cover;
+  border-radius: 6px;
+  display: block;
+  transition: all var(--transition-normal);
+}
+
+.card-list .card:hover {
+  transform: scale(1.08);
+  z-index: 10;
+}
+
+.card-list .card:hover img {
+  filter: brightness(1.1);
+}
+
+/* Card Overlay */
+.card-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: linear-gradient(to top, rgba(0,0,0,0.9) 0%, transparent 100%);
+  opacity: 0;
+ transform: translateY(10px);
+  transition: all var(--transition-normal);
+  padding: 15px;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+.card-list .card:hover .card-overlay {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.card-info {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 10px;
+}
+
+.card-title {
+  font-size: 14px;
+  font-weight: 600;
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex: 1;
+}
+
+.card-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.card-watchlist-btn {
+  background: rgba(255, 255, 255, 0.2);
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  color: white;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+}
+
+.card-watchlist-btn:hover {
+  background: rgba(255, 255, 255, 0.3);
+  border-color: white;
+  transform: scale(1.1);
+}
+
+/* Scroll Buttons */
+.scroll-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background: rgba(0, 0, 0, 0.7);
+  border: none;
+  color: white;
+  width: 50px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 24px;
+  cursor: pointer;
+  z-index: 5;
+  opacity: 0;
+  transition: all var(--transition-normal);
+}
+
+.card-list-wrapper:hover .scroll-btn {
+  opacity: 1;
+}
+
+.scroll-btn:hover {
+  background: rgba(0, 0, 0, 0.9);
+}
+
+.scroll-left {
+  left: 0;
+}
+
+.scroll-right {
+  right: 0;
+}
+
+/* Infinite Scroll */
+.load-more-trigger {
+  flex-shrink: 0;
+  width: 240px;
+  height: 135px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.loading-more {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+}
+
+.spinner-small {
+  width: 40px;
+  height: 40px;
+  border: 3px solid var(--bg-hover);
+  border-top-color: var(--netflix-red);
+  border-radius: 50%;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Error Message */
+.error-message {
+  padding: 40px;
+  text-align: center;
+  color: var(--text-secondary);
+  background: var(--bg-card);
+  border-radius: 8px;
+}
+
+/* Responsive */
 @media (max-width: 992px) {
-  .card-list img {
+  .card-list .card img {
     width: 200px;
+    height: 112px;
   }
 
   .title-cards {
     margin-top: 40px;
     margin-bottom: 25px;
+  }
+
+  .scroll-btn {
+    width: 40px;
+    height: 100px;
+    font-size: 20px;
+  }
+  
+  .load-more-trigger {
+    width: 200px;
+    height: 112px;
   }
 }
 
@@ -45,12 +223,26 @@
     gap: 8px;
   }
 
-  .card-list img {
+  .card-list .card img {
     width: 160px;
+    height: 90px;
   }
 
   .title-cards h2 {
-    font-size: 18px;
+    font-size: 20px;
+  }
+
+  .card-title {
+    font-size: 12px;
+  }
+
+  .scroll-btn {
+    display: none;
+  }
+  
+  .load-more-trigger {
+    width: 160px;
+    height: 90px;
   }
 }
 
@@ -59,18 +251,38 @@
     gap: 6px;
   }
 
-  .card-list img {
+  .card-list .card img {
     width: 120px;
+    height: 68px;
   }
 
-  .card-list .card p {
+  .card-title {
+    font-size: 11px;
+  }
+
+  .card-watchlist-btn {
+    width: 28px;
+    height: 28px;
     font-size: 12px;
-    bottom: 6px;
-    right: 6px;
   }
 
   .title-cards {
     margin-top: 30px;
     margin-bottom: 20px;
+  }
+
+  .title-cards h2 {
+    font-size: 18px;
+  }
+  
+  .load-more-trigger {
+    width: 120px;
+    height: 68px;
+  }
+  
+  .spinner-small {
+    width: 30px;
+    height: 30px;
+    border-width: 2px;
   }
 }

@@ -1,87 +1,191 @@
 .login {
-  height: 100vh;
-  background-image: linear-gradient(#0000007e, #0000007e),
+  min-height: 100vh;
+  background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)),
     url(/src/assets/netflix_backgroud.jpg);
-
-    background-repeat: no-repeat;
-background-size: cover; 
-background-position: center; 
-  padding: 20px 8%;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center;
+  padding: 24px 4% 0;
   display: flex;
   flex-direction: column;
+  position: relative;
+  overflow-y: auto;
 }
+
 .login-logo {
-  width: 150px;
+  width: 160px;
+  cursor: pointer;
+  z-index: 10;
+  transition: transform var(--transition-normal);
+}
+
+.login-logo:hover {
+  transform: scale(1.05);
+}
+
+.login-form-container {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px 0;
+}
+
+.login-form {
+  width: 100%;
+  max-width: 450px;
+  background: var(--bg-modal);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--glass-border);
+  border-radius: 8px;
+  padding: 60px 68px 40px;
+  box-shadow: var(--shadow-lg);
+  display: flex;
+  flex-direction: column;
 }
 
 .login-form h1 {
   font-size: 32px;
-  font-weight: 500;
+  font-weight: 700;
   margin-bottom: 28px;
+  color: var(--text-primary);
 }
-.login-form {
-  width: 100%;
-  max-width: 360px;
-  background: rgba(0, 0, 0, 0.75);
+
+.error-message {
+  background: #e87c03;
+  color: white;
+  padding: 10px 20px;
   border-radius: 4px;
-  padding: 35px 40px;
-  margin: auto;
+  font-size: 14px;
+  margin-bottom: 16px;
+  animation: fadeIn 0.3s ease;
+}
+
+.login-form form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.input-group {
+  position: relative;
+  width: 100%;
 }
 
 .login-form input {
   width: 100%;
-  height: 42px;
+  height: 50px;
   background: #333;
   color: white;
-  margin: 10px 0;
-  border: 0;
+  border: 1px solid transparent;
   outline: 0;
   border-radius: 4px;
-  padding: 12px 16px;
-  font-size: 14px;
-}
-.login-form input::placeholder {
+  padding: 16px 20px;
   font-size: 16px;
-  font-weight: 500;
+  transition: background var(--transition-fast), border var(--transition-fast);
 }
+
+.login-form input:focus {
+  background: #454545;
+  border-bottom: 2px solid #e87c03;
+}
+
+.password-toggle {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #8c8c8c;
+  cursor: pointer;
+  font-size: 18px;
+  display: flex;
+  align-items: center;
+  transition: color 0.2s;
+}
+
+.password-toggle:hover {
+  color: white;
+}
+
 .login-form button {
   width: 100%;
+  height: 50px;
   border: 0;
   outline: 0;
-  padding: 16px;
-  background: #e50914;
+  background: var(--netflix-red);
   color: white;
   border-radius: 4px;
   font-size: 16px;
-  font-weight: 500;
-  margin-top: 20px;
+  font-weight: 700;
+  margin-top: 24px;
   cursor: pointer;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
+
+.login-form button:hover:not(:disabled) {
+  background: var(--netflix-red-dark);
+}
+
+.login-form button:active:not(:disabled) {
+  transform: scale(0.98);
+}
+
+.login-form button:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Mini Loader */
+.btn-loader {
+  width: 24px;
+  height: 24px;
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  border-top-color: #fff;
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
 .form-help {
   display: flex;
   align-items: center;
   justify-content: space-between;
   color: #b3b3b3;
   font-size: 13px;
+  margin-top: 10px;
 }
 
 .remember {
   display: flex;
   align-items: center;
-  gap: 5px;
-}
-.remember input {
-  width: 18px;
-  height: 18px;
+  gap: 8px;
+  cursor: pointer;
 }
 
-.remember input {
-  accent-color: #e50914;
+.remember input[type="checkbox"] {
+  width: 16px;
+  height: 16px;
+  margin: 0;
+  accent-color: var(--netflix-red);
+}
+
+.form-help p:hover {
+  text-decoration: underline;
+  cursor: pointer;
 }
 
 .form-switch {
-  margin-top: 40px;
+  margin-top: 32px;
   color: #737373;
+  font-size: 16px;
 }
 
 .form-switch span {
@@ -91,70 +195,81 @@ background-position: center;
   cursor: pointer;
 }
 
-.login-spinner {
-  width: 100%;
-  height: 100vh;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.form-switch span:hover {
+  text-decoration: underline;
 }
-.login-spinner img {
-  width: 60px;
+
+/* Netflix Footer */
+.login-footer {
+  background: rgba(0, 0, 0, 0.75);
+  padding: 30px 4% 50px;
+  width: 100%;
+  color: #737373;
+}
+
+.footer-content {
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.footer-content p {
+  margin-bottom: 30px;
+  font-size: 16px;
+}
+
+.footer-links {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+}
+
+.footer-links a {
+  font-size: 13px;
+  color: #737373;
+}
+
+.footer-links a:hover {
+  text-decoration: underline;
+}
+
+@media (max-width: 1000px) {
+  .footer-links {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }
 
 @media (max-width: 768px) {
   .login {
-    padding: 20px 5%;
-    background-size: cover;
-  }
-
-  .login-form {
-    max-width: 100%;
-    padding: 25px 30px;
-  }
-
-  .login-form h1 {
-    font-size: 28px;
-  }
-}
-
-@media (max-width: 480px) {
-  .login {
-    padding: 20px 4%;
-    background-position: center;
+    background-image: none;
+    background-color: #000;
+    padding: 20px 0 0;
   }
 
   .login-logo {
     width: 120px;
+    margin-left: 4%;
   }
 
   .login-form {
-    padding: 20px;
-    border-radius: 6px;
+    max-width: 100%;
+    background: transparent;
+    backdrop-filter: none;
+    border: none;
+    padding: 30px 6%;
+    box-shadow: none;
   }
 
+  .footer-links {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .login-form {
+    padding: 20px 4%;
+  }
+  
   .login-form h1 {
-    font-size: 24px;
-  }
-
-  .login-form input {
-    height: 38px;
-    font-size: 14px;
-  }
-
-  .login-form button {
-    padding: 14px;
-    font-size: 15px;
-  }
-
-  .form-help {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .form-switch {
-    text-align: center;
+    font-size: 28px;
   }
 }
